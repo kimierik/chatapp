@@ -14,8 +14,7 @@ app.get('/',(req,res)=>{
 
 io.on('connection',(socket)=>{
 	socket.on('msg',(data)=>{
-		console.log(data);
-	socket.emit('msg',data);
+		io.emit('msg',data);
 });
 
 });
