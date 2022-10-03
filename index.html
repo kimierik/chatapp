@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+
+asd help me
+<input id="buddon" /><button>asd</button>
+
+
+<script src="/socket.io/socket.io.js"></script> 
+<script>
+var socket=io();
+
+
+var inp=document.getElementById('buddon');
+
+inp.addEventListener('click',func);
+
+function func(){
+socket.emit('msg',"pressed");
+}
+
+
+</script>
+</body>
+</html>
+
+
+
