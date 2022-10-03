@@ -13,10 +13,9 @@ app.get('/',(req,res)=>{
 
 
 io.on('connection',(socket)=>{
-console.log("asd");
-
-socket.on('msg',(data)=>{
-console.log(data);
+	socket.on('msg',(data)=>{
+		console.log(data);
+	socket.emit('msg',data);
 });
 
 });

@@ -8,21 +8,29 @@
 
 
 asd help me
-<input id="buddon" /><button>asd</button>
-
+<input id="txtibnpu" /><button id="buddon">asd</button>
+<div id="messege_field"></div>
 
 <script src="/socket.io/socket.io.js"></script> 
 <script>
 var socket=io();
-
-
 var inp=document.getElementById('buddon');
-
+var board=document.getElementById('messege_field');
 inp.addEventListener('click',func);
 
 function func(){
 socket.emit('msg',"pressed");
 }
+
+socket.on('msg',function(data){
+	var item=document.createElement('p');
+	item.textContent=data;
+	board.appendChild(item);
+
+
+});
+
+
 
 
 </script>
