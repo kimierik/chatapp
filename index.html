@@ -1,40 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title></title>
+	<meta charset="UTF-8">
+	<title>chatapp forum tes thing</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
-asd help me
-<input id="txtibnpu" /><button id="buddon">asd</button>
-<div id="messege_field"></div>
 
-<script src="/socket.io/socket.io.js"></script> 
-<script>
-var socket=io();
-var inp=document.getElementById('buddon');
-var txtinput=document.getElementById('txtibnpu');
-var board=document.getElementById('messege_field');
-inp.addEventListener('click',func);
+<div class="messege_board">
 
-function func(){
-socket.emit('msg',txtinput.value);
-}
-
-socket.on('msg',function(data){
-	var item=document.createElement('p');
-	item.textContent=data;
-	board.appendChild(item);
+<div class="messege_area">
 
 
-});
+	<div id="messege_field"></div>
+
+</div>
+
+
+	<input id="txtibnpu" /><button id="buddon">asd</button>
+
+
+</div>
 
 
 
 
-</script>
+	<script src="/socket.io/socket.io.js"></script> 
+	<script src="client.js"></script>
 </body>
 </html>
 
