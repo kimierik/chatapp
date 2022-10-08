@@ -20,6 +20,14 @@ function func(){
 
 socket.on('load',function(data){
 	console.log(data);
+	//forloop make paragraph fo every item in the arrayo
+	for (let i =0;i<data.length;i++){
+	//
+	var item=document.createElement('p');
+	item.textContent=data[i];
+	board.appendChild(item);
+	scroll();
+	}
 });
 
 
