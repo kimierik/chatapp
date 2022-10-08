@@ -13,7 +13,7 @@ mongo.connect('mongodb://localhost/chat',function(err,db){
 			throw err;
 	}
 	console.log('mongo connection');
-}
+});
 
 app.use(express.static('modules'))
 app.get('/',(req,res)=>{
@@ -23,7 +23,18 @@ app.get('/',(req,res)=>{
 
 
 io.on('connection',(socket)=>{
+
+	let chat_data=db.collection('messeges');
+
+	chat_data.find().limit(1090).toArray(function(err,res){
+		if(err){
+			throw err;
+		}
+		socker.emit('load',res);
+	});
+
 	socket.on('msg',(data)=>{
+		chat_data.insert({messege:data});
 		io.emit('msg',data);
 	});
 });

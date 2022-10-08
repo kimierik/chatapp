@@ -18,6 +18,9 @@ function func(){
 }
 
 
+socker.on('load',function(data){
+	console.log('data')
+}
 
 
 socket.on('msg',function(data){
