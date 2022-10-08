@@ -27,13 +27,8 @@ const collection=db.collection('messeges');
 io.on('connection',(socket)=>{
 
 
-	console.log('user');
-	collection.find({}).limit(1090).toArray(function(err,res){
-		if(err){
-			throw err;
-		}
-		socket.emit('load',res);
-	});
+	const res =collection.find({}).toArray();
+	socket.emit('load',res);
 
 	socket.on('msg',(data)=>{
 		collection.insertMany([{messege:data}]);
