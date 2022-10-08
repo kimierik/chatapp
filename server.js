@@ -33,7 +33,7 @@ async function main(){
 	}
 
 	io.on('connection',(socket)=>{
-	const history=get_data();
+	const history=await get_data();
 	console.log(history)	
 
 	socket.emit('load',history);
