@@ -36,7 +36,7 @@ io.on('connection',(socket)=>{
 	});
 
 	socket.on('msg',(data)=>{
-		chat_data.insert({messege:data});
+		collection.insertMany([{messege:data}]);
 		io.emit('msg',data);
 	});
 });
