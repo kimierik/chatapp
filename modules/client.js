@@ -24,7 +24,7 @@ socket.on('load',function(data){
 	for (let i =0;i<data.length;i++){
 	//
 	var item=document.createElement('p');
-	var child =data[1];
+	var child =data[i];
 	item.textContent=child['messege'];
 	board.appendChild(item);
 	scroll();
