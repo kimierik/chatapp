@@ -7,18 +7,17 @@ const io =new Server(server);
 const mongo = require('mongodb').MongoClient;
 
 
+app.use(express.static('modules'))
+app.get('/',(req,res)=>{
+	res.sendFile(__dirname+'/index.html');
+});
 
 mongo.connect('mongodb://localhost/chat',function(err,db){
 	if(err){
 			throw err;
 	}
 	console.log('mongo connection');
-});
 
-app.use(express.static('modules'))
-app.get('/',(req,res)=>{
-	res.sendFile(__dirname+'/index.html');
-});
 
 
 
@@ -46,5 +45,6 @@ server.listen(3000,()=>{
 });
 
 
+});
 
 
