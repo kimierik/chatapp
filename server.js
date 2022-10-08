@@ -16,6 +16,10 @@ app.get('/',(req,res)=>{
 	res.sendFile(__dirname+'/index.html');
 });
 
+async function get_data(collection){
+	const res =await collection.find({}).toArray();
+	return res;
+}
 
 async function main(){
 	await client.connect();
@@ -28,8 +32,8 @@ async function main(){
 	console.log(res)
 
 	io.on('connection',(socket)=>{
-
-	socket.emit('load',res);
+	
+	socket.emit('load',get_data(collection));
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
