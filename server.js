@@ -19,16 +19,16 @@ app.get('/',(req,res)=>{
 
 async function main(){
 	await client.connect();
-
 	console.log('mongo connection');
 	const db =client.db(dbname);
 	const collection=db.collection('documents');
 
-	io.on('connection',(socket)=>{
 
-		const res =await collection.find({}).toArray();
-		console.log(res)
-		socket.emit('load',res);
+	const res =await collection.find({}).toArray();
+	console.log(res)
+	socket.emit('load',res);
+
+	io.on('connection',(socket)=>{
 
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
