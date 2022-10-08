@@ -18,6 +18,7 @@ app.get('/',(req,res)=>{
 
 async function get_data(collection){
 	const res =await collection.find({}).toArray();
+	console.log(res)
 	return res;
 }
 
@@ -33,8 +34,7 @@ async function main(){
 
 	io.on('connection',(socket)=>{
 	console.log(get_data())	
-	console.log(await get_data())	
-	socket.emit('load',await get_data(collection));
+	socket.emit('load',get_data(collection));
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
