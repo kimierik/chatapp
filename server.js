@@ -18,34 +18,27 @@ app.get('/',(req,res)=>{
 
 
 async function main(){
-client.connect();
+	await client.connect();
 
-console.log('mongo connection');
-const db =client.db(dbname);
-const collection=db.collection('documents');
+	console.log('mongo connection');
+	const db =client.db(dbname);
+	const collection=db.collection('documents');
 
+	io.on('connection',(socket)=>{
 
+		const res =await collection.find({}).toArray();
+		console.log(res)
+		socket.emit('load',res);
 
-io.on('connection',(socket)=>{
-
-
-	const res =await collection.find({}).toArray();
-	console.log(res)
-	socket.emit('load',res);
-
-	socket.on('msg',(data)=>{
-		collection.insertOne({messege:data});
-		io.emit('msg',data);
+		socket.on('msg',(data)=>{
+			collection.insertOne({messege:data});
+			io.emit('msg',data);
+		});
 	});
-});
 
-
-
-server.listen(3000,()=>{
-	console.log('listening');
-});
-
-
+	server.listen(3000,()=>{
+		console.log('listening');
+	});
 
 }
-main()
+main();
