@@ -19,7 +19,7 @@ function func(){
 
 
 socket.on('load',function(data){
-	console.log('data')
+	console.log(data);
 });
 
 
