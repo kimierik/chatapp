@@ -26,10 +26,10 @@ async function main(){
 
 	const res =await collection.find({}).toArray();
 	console.log(res)
-	socket.emit('load',res);
 
 	io.on('connection',(socket)=>{
 
+	socket.emit('load',res);
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
