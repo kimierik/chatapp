@@ -12,7 +12,7 @@ app.get('/',(req,res)=>{
 	res.sendFile(__dirname+'/index.html');
 });
 
-mongo.connect('mongodb://localhost/chat',function(err,db){
+mongo.connect('mongodb://localhost/chat',function(err,client){
 	if(err){
 			throw err;
 	}
@@ -23,7 +23,7 @@ mongo.connect('mongodb://localhost/chat',function(err,db){
 
 io.on('connection',(socket)=>{
 
-	let chat_data=db.collection('messeges');
+	let chat_data=client.db('messeges');
 
 	chat_data.find().limit(1090).toArray(function(err,res){
 		if(err){
