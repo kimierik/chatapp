@@ -20,7 +20,7 @@ client.connect();
 
 console.log('mongo connection');
 const db =client.db(dbname);
-const collection=db.collection('messeges');
+const collection=db.collection('documents');
 
 
 
@@ -28,10 +28,11 @@ io.on('connection',(socket)=>{
 
 
 	const res =collection.find({}).toArray();
+	console.log(res)
 	socket.emit('load',res);
 
 	socket.on('msg',(data)=>{
-		collection.insertMany([{messege:data}]);
+		collection.insertOne({messege:data});
 		io.emit('msg',data);
 	});
 });
