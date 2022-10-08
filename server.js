@@ -32,8 +32,9 @@ async function main(){
 	console.log(res)
 
 	io.on('connection',(socket)=>{
-	
-	socket.emit('load',get_data(collection));
+	console.log(get_data())	
+	console.log(await get_data())	
+	socket.emit('load',await get_data(collection));
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
