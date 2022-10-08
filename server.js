@@ -27,7 +27,7 @@ const collection=db.collection('documents');
 io.on('connection',(socket)=>{
 
 
-	const res =collection.find({}).toArray();
+	const res =await collection.find({}).toArray();
 	console.log(res)
 	socket.emit('load',res);
 
