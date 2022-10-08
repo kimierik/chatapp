@@ -29,12 +29,15 @@ async function main(){
 
 	async function get_data(){
 		const res =await collection.find({}).toArray();
-		console.log(res)
 		return res;
 	}
+
 	io.on('connection',(socket)=>{
-	console.log(get_data())	
-	socket.emit('load',get_data());
+	const history=get_data();
+	console.log(history)	
+
+	socket.emit('load',history);
+
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
