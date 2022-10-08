@@ -32,7 +32,7 @@ io.on('connection',(socket)=>{
 		if(err){
 			throw err;
 		}
-		socker.emit('load',res);
+		socket.emit('load',res);
 	});
 
 	socket.on('msg',(data)=>{
