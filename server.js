@@ -10,12 +10,14 @@ const url ='mongodb://localhost:27017'
 const client= new MongoClient(url)
 const dbname='chat';
 
+
 app.use(express.static('modules'))
 app.get('/',(req,res)=>{
 	res.sendFile(__dirname+'/index.html');
 });
 
 
+async function main(){
 client.connect();
 
 console.log('mongo connection');
@@ -45,4 +47,5 @@ server.listen(3000,()=>{
 
 
 
-
+}
+main()
