@@ -33,10 +33,10 @@ async function main(){
 	}
 
 	io.on('connection',(socket)=>{
-	const history=await get_data();
+	get_data().then(function(history){
 	console.log(history)	
-
 	socket.emit('load',history);
+	});
 
 		socket.on('msg',(data)=>{
 			collection.insertOne({messege:data});
