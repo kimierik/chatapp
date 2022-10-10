@@ -24,17 +24,19 @@ async function main(){
 	const collection=db.collection('documents');
 
 
-	const res =await collection.find({}).toArray();
-	console.log(res)
+//	const res =await collection.find({}).toArray();
+//	console.log(res)
 
 	async function get_data(){
 		const res =await collection.find({}).toArray();
 		return res;
 	}
 
+
+
+
 	io.on('connection',(socket)=>{
 	get_data().then(function(history){
-	console.log(history)	
 	socket.emit('load',history);
 	});
 
@@ -42,7 +44,22 @@ async function main(){
 			collection.insertOne({messege:data});
 			io.emit('msg',data);
 		});
+		socket.on('delete',(data)=>{
+			get_data().then(function(messeges){
+
+			for(let i=0;i<messeges.length;i++){
+				collection.deleteOne(messeges[i]);
+			}
+
+			});
+		});
+
+
+		//connection end
 	});
+
+
+
 
 	server.listen(3000,()=>{
 		console.log('listening');
