@@ -4,7 +4,13 @@ var txtinput=document.getElementById('txtibnpu');
 var board=document.getElementById('messege_field');
 var messegearea=document.getElementById("msgarea")
 inp.addEventListener('click',func);
-txtinput.addEventListener('submit',func);
+txtinput.addEventListener('keyup',(event)=>{
+
+	if (event.key==="Enter"){
+		func()
+	}
+});
+
 document.getElementById('deletekey').addEventListener('click',deldata)
 
 let isbottom=false;
@@ -13,6 +19,7 @@ function scroll(){
 	messegearea.scrollTo(0,messegearea.scrollHeight)
 	}
 }
+
 
 function func(){
 	socket.emit('msg',txtinput.value);
