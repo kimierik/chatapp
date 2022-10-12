@@ -5,6 +5,7 @@ var board=document.getElementById('messege_field');
 var messegearea=document.getElementById("msgarea")
 inp.addEventListener('click',func);
 txtinput.addEventListener('submit',func);
+document.getElementById('deletekey').addEventListener('click',deldata)
 
 let isbottom=false;
 function scroll(){
@@ -15,6 +16,10 @@ function scroll(){
 
 function func(){
 	socket.emit('msg',txtinput.value);
+}
+
+function deldata(){
+	socket.emit('delete','all');
 }
 
 
