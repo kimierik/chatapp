@@ -22,12 +22,8 @@ width:40%;
 }
 
 /*just contains the messeges*/
-#messege_field{
-
-	p{
-		margin:5;
-	}
-
+#messege_field >p{
+margin:5px;
 
 }
 
