@@ -16,6 +16,7 @@ function scroll(){
 
 function func(){
 	socket.emit('msg',txtinput.value);
+	txtinput.value="";
 }
 
 function deldata(){
