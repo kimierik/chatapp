@@ -46,7 +46,6 @@ async function main(){
 		});
 		socket.on('delete',(data)=>{
 			get_data().then(function(messeges){
-
 			for(let i=0;i<messeges.length;i++){
 				collection.deleteOne(messeges[i]);
 			}

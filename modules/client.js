@@ -20,6 +20,7 @@ function func(){
 
 function deldata(){
 	socket.emit('delete','all');
+	board.innerHTML="";
 }
 
 
